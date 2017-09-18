@@ -10,6 +10,12 @@ URL: http://wiki.qt.io/Qbs
 License: GPL
 Group: Development/Tools
 BuildRequires: qmake5
+BuildRequires: cmake(Qt5Core)
+BuildRequires: cmake(Qt5Gui)
+BuildRequires: cmake(Qt5Network)
+BuildRequires: cmake(Qt5Widgets)
+BuildRequires: cmake(Qt5Script)
+BuildRequires: cmake(Qt5Xml)
 
 %define devname %mklibname %{name} -d
 
