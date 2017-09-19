@@ -35,7 +35,7 @@ Development files for the QBS Build System
 
 %prep
 %setup -qn dist/%{name}-src-%{version}
-qmake -r qbs.pro QBS_INSTALL_PREFIX=%{_prefix} QBS_LIBRARY_DIRNAME=%{_lib}
+%{_libdir}/qt5/bin/qmake -r qbs.pro QBS_INSTALL_PREFIX=%{_prefix} QBS_LIBRARY_DIRNAME=%{_lib}
 
 %build
 %make
