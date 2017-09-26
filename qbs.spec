@@ -16,6 +16,7 @@ BuildRequires: cmake(Qt5Network)
 BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt5Script)
 BuildRequires: cmake(Qt5Xml)
+BuildRequires: cmake(Qt5Test)
 
 %define devname %mklibname %{name} -d
 
@@ -23,7 +24,7 @@ BuildRequires: cmake(Qt5Xml)
 %libpackage qbsqtprofilesetup 1
 
 %description
-The QBS Build System
+The QBS Build System.
 
 %package -n %{devname}
 Summary: Development files for the QBS Build System
@@ -31,7 +32,7 @@ Group: Development/Tools
 Requires: %{name} = %{EVRD}
 
 %description -n %{devname}
-Development files for the QBS Build System
+Development files for the QBS Build System.
 
 %prep
 %setup -qn dist/%{name}-src-%{version}
