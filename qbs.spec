@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name: qbs
-Version: 1.9.0
+Version: 1.10.0
 Release: 1
 Source0: https://download.qt.io/official_releases/qbs/%{version}/qbs-src-%{version}.tar.gz
 Source10: %{name}.rpmlintrc
@@ -35,7 +35,7 @@ Requires: %{name} = %{EVRD}
 Development files for the QBS Build System.
 
 %prep
-%setup -qn dist/%{name}-src-%{version}
+%setup -qn %{name}-src-%{version}
 %{_libdir}/qt5/bin/qmake -r qbs.pro QBS_INSTALL_PREFIX=%{_prefix} QBS_LIBRARY_DIRNAME=%{_lib}
 
 %build
@@ -52,6 +52,7 @@ Development files for the QBS Build System.
 %{_datadir}/qbs/imports
 %{_datadir}/qbs/modules
 %{_datadir}/qbs/python
+%{_mandir}/man1/qbs.1*
 
 %files -n %{devname}
 %{_includedir}/qbs
