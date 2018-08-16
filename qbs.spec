@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name: qbs
-Version: 1.10.0
+Version: 1.12.0
 Release: 1
 Source0: https://download.qt.io/official_releases/qbs/%{version}/qbs-src-%{version}.tar.gz
 Source10: %{name}.rpmlintrc
