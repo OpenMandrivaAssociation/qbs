@@ -52,6 +52,7 @@ Development files for the QBS Build System.
 %{_datadir}/qbs/imports
 %{_datadir}/qbs/modules
 %{_datadir}/qbs/python
+%{_datadir}/qbs/qml-type-descriptions
 %{_mandir}/man1/qbs.1*
 
 %files -n %{devname}
