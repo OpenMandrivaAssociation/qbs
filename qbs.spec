@@ -2,7 +2,7 @@
 
 Name: qbs
 Version: 1.12.0
-Release: 1
+Release: 2
 Source0: https://download.qt.io/official_releases/qbs/%{version}/qbs-src-%{version}.tar.gz
 Source10: %{name}.rpmlintrc
 Summary: The QBS Build System
