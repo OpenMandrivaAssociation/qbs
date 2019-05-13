@@ -1,7 +1,7 @@
 %define build_docs	0
 
 Name:           qbs
-Version:        1.12.2
+Version:        1.13.0
 Release:        1
 Summary:        Qt5 Build System
 Group:          Development/KDE and Qt
@@ -19,6 +19,7 @@ BuildRequires:  pkgconfig(Qt5Script)
 BuildRequires:  pkgconfig(Qt5Test)
 BuildRequires:  pkgconfig(Qt5Widgets)
 BuildRequires:  pkgconfig(Qt5Xml)
+Obsoletes:  qbs > 4.2.2
 
 %description
 Qbs is a tool that helps simplify the build process for developing projects
@@ -112,8 +113,7 @@ HTML documentation for %{name}.
 #------------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-src-%{version}
-%autopatch -p1
+%autosetup -n %{name}-src-%{version} -p1
 
 %build
 %qmake_qt5 \
