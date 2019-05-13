@@ -9,7 +9,6 @@ Group:          Development/KDE and Qt
 License:        LGPLv2 with exceptions and LGPLv3 with exceptions
 URL:            https://wiki.qt.io/qbs
 Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.gz
-
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
@@ -20,6 +19,7 @@ BuildRequires:  pkgconfig(Qt5Test)
 BuildRequires:  pkgconfig(Qt5Widgets)
 BuildRequires:  pkgconfig(Qt5Xml)
 Obsoletes:  qbs > 4.2.2
+Obsoletes:  %{mklibname qbsqtprofilesetup 1} < 1.13.0
 
 %description
 Qbs is a tool that helps simplify the build process for developing projects
@@ -54,28 +54,13 @@ Qbs Core library.
 
 #--------------------------------------------------------------------
 
-%define qbsqtprofilesetup_major 1
-%define libqbsqtprofilesetup %mklibname qbsqtprofilesetup %{qbsqtprofilesetup_major}
-
-%package -n     %{libqbsqtprofilesetup}
-Summary:        Qbs QtProfileSetup library
-Group:          System/Libraries
-
-%description -n %{libqbsqtprofilesetup}
-Qbs QtProfileSetup library.
-
-%files -n %libqbsqtprofilesetup
-%{_libdir}/libqbsqtprofilesetup.so.%{qbsqtprofilesetup_major}{,.*}
-
-#--------------------------------------------------------------------
-
 %define libqbs_d %mklibname %{name} -d
 
 %package -n     %{libqbs_d}
 Summary:        Devel files needed to build apps based on %{name}
 Group:          Development/KDE and Qt
-Requires:       %{libqbscore} = %{version}-%{release}
-Requires:       %{libqbsqtprofilesetup} = %{version}-%{release}
+Requires:       %{libqbscore} = %{EVRD}
+Requires:       %{libqbsqtprofilesetup} = %{EVRD}
 Provides:       lib%{name}-devel = %{version}
 Provides:       %{name}-devel = %{version}
 
