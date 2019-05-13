@@ -60,7 +60,6 @@ Qbs Core library.
 Summary:        Devel files needed to build apps based on %{name}
 Group:          Development/KDE and Qt
 Requires:       %{libqbscore} = %{EVRD}
-Requires:       %{libqbsqtprofilesetup} = %{EVRD}
 Provides:       lib%{name}-devel = %{version}
 Provides:       %{name}-devel = %{version}
 
