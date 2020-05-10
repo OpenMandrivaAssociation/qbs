@@ -1,14 +1,14 @@
 %define build_docs	0
 
 Name:           qbs
-Version:        1.15.0
+Version:        1.16.0
 Release:        1
 Summary:        Qt5 Build System
 Group:          Development/KDE and Qt
 # See LGPL_EXCEPTION.txt
 License:        LGPLv2 with exceptions and LGPLv3 with exceptions
 URL:            https://wiki.qt.io/qbs
-Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.gz
+Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.xz
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
