@@ -8,7 +8,7 @@ Group:          Development/KDE and Qt
 # See LGPL_EXCEPTION.txt
 License:        LGPLv2 with exceptions and LGPLv3 with exceptions
 URL:            https://wiki.qt.io/qbs
-Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.xz
+Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.gz
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
