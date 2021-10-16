@@ -132,7 +132,7 @@ HTML documentation for %{name}.
 %cmake \
     -DQBS_LIB_INSTALL_DIR=%{_libdir} \
     -DQBS_PLUGINS_INSTALL_BASE=%{_libdir} \
-    -DWITH_UNIT_TESTS=ON \
+    -DWITH_UNIT_TESTS=OFF \
     -DQBS_ENABLE_RPATH=OFF \
     -DQBS_INSTALL_HTML_DOCS=ON
     
