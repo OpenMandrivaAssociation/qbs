@@ -134,7 +134,7 @@ HTML documentation for %{name}.
     -DQBS_PLUGINS_INSTALL_BASE=%{_libdir} \
     -DWITH_UNIT_TESTS=OFF \
     -DQBS_ENABLE_RPATH=OFF \
-    -DQBS_INSTALL_HTML_DOCS=ON
+    -DQBS_INSTALL_HTML_DOCS=OFF
     
 LD_LIBRARY_PATH=%{_lib} %make_build
 
