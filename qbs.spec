@@ -129,6 +129,7 @@ HTML documentation for %{name}.
 #make_build html_docs
 #endif
 
+export QBS_AUTOTEST_PROFILE
 %cmake \
     -DQBS_LIB_INSTALL_DIR=%{_libdir} \
     -DQBS_PLUGINS_INSTALL_BASE=%{_libdir} \
@@ -137,6 +138,7 @@ HTML documentation for %{name}.
     -DQBS_INSTALL_HTML_DOCS=ON
     
 %make_build
+export QBS_AUTOTEST_PROFILE
 
 %install
 %make_install -C build
