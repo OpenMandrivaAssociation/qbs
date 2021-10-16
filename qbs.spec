@@ -11,7 +11,7 @@ URL:            https://wiki.qt.io/qbs
 Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.gz
 
 # Attempt to filter qbs debug output from stderr
-Patch1:         qbs_tst_blackbox_stderr.patch
+#Patch1:         qbs_tst_blackbox_stderr.patch
 # Fix qmake detection
 Patch2:         qbs_qmake.patch
 
@@ -129,7 +129,6 @@ HTML documentation for %{name}.
 #make_build html_docs
 #endif
 
-export QBS_AUTOTEST_PROFILE
 %cmake \
     -DQBS_LIB_INSTALL_DIR=%{_libdir} \
     -DQBS_PLUGINS_INSTALL_BASE=%{_libdir} \
@@ -138,7 +137,6 @@ export QBS_AUTOTEST_PROFILE
     -DQBS_INSTALL_HTML_DOCS=ON
     
 %make_build
-export QBS_AUTOTEST_PROFILE
 
 %install
 %make_install -C build
