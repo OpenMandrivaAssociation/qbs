@@ -136,7 +136,7 @@ HTML documentation for %{name}.
     -DQBS_ENABLE_RPATH=OFF \
     -DQBS_INSTALL_HTML_DOCS=ON
     
-%make_build
+LD_LIBRARY_PATH=%{_lib} %make_build
 
 %install
 %make_install -C build
