@@ -15,6 +15,7 @@ Patch1:         qbs_tst_blackbox_stderr.patch
 # Fix qmake detection
 Patch2:         qbs_qmake.patch
 
+BuildRequires:  cmake
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
@@ -106,29 +107,38 @@ HTML documentation for %{name}.
 %autosetup -n %{name}-src-%{version} -p1
 
 %build
-export CC=gcc
-export CXX=g++
-%qmake_qt5 \
-  QBS_INSTALL_PREFIX=%{_prefix} \
-  QBS_LIBRARY_DIRNAME=%{_lib} \
-  QBS_LIBEXEC_INSTALL_DIR=%{_libexecdir}/%{name} \
-  QBS_RELATIVE_LIBEXEC_PATH=../libexec/%{name} \
-  CONFIG+=qbs_enable_project_file_updates \
-  CONFIG+=qbs_disable_rpath \
-  CONFIG+=qbs_enable_unit_tests \
-  CONFIG+=nostrip \
-  QMAKE_LFLAGS="-Wl,--as-needed" \
-  qbs.pro
+#export CC=gcc
+#export CXX=g++
+#qmake_qt5 \
+#  QBS_INSTALL_PREFIX=%{_prefix} \
+#  QBS_LIBRARY_DIRNAME=%{_lib} \
+#  QBS_LIBEXEC_INSTALL_DIR=%{_libexecdir}/%{name} \
+#  QBS_RELATIVE_LIBEXEC_PATH=../libexec/%{name} \
+#  CONFIG+=qbs_enable_project_file_updates \
+#  CONFIG+=qbs_disable_rpath \
+#  CONFIG+=qbs_enable_unit_tests \
+#  CONFIG+=nostrip \
+#  QMAKE_LFLAGS="-Wl,--as-needed" \
+#  qbs.pro
 # LD_LIBRARY_PATH: Because the qbs executable built is itself invoked, and it requires the built qbs libraries
-LD_LIBRARY_PATH=%{_lib} %make_build
+#LD_LIBRARY_PATH=%{_lib} %make_build
 
-%if %{build_docs}
-%make_build docs
-%make_build html_docs
-%endif
+#if %{build_docs}
+#make_build docs
+#make_build html_docs
+#endif
+
+%cmake \
+    -DQBS_LIB_INSTALL_DIR=%{_libdir} \
+    -DQBS_PLUGINS_INSTALL_BASE=%{_libdir} \
+    -DWITH_UNIT_TESTS=ON \
+    -DQBS_ENABLE_RPATH=OFF \
+    -DQBS_INSTALL_HTML_DOCS=ON
+    
+%make_build
 
 %install
-%make_install INSTALL_ROOT=%{buildroot}
+%make_install -C build
 
 %if %{build_docs}
 %make_install install_docs INSTALL_ROOT=%{buildroot}
