@@ -1,0 +1,33 @@
+diff -rupN qbs-src-1.20.1/share/qbs/module-providers/Qt/setup-qt.js qbs-src-1.20.1-new/share/qbs/module-providers/Qt/setup-qt.js
+--- qbs-src-1.20.1/share/qbs/module-providers/Qt/setup-qt.js	2021-10-01 13:19:45.000000000 +0200
++++ qbs-src-1.20.1-new/share/qbs/module-providers/Qt/setup-qt.js	2021-10-08 09:11:03.362049381 +0200
+@@ -58,16 +58,19 @@ function getQmakeFilePaths(qmakeFilePath
+     if (pathValue) {
+         var dirs = splitNonEmpty(pathValue, qbs.pathListSeparator);
+         var suffix = exeSuffix(qbs);
+-        for (var i = 0; i < dirs.length; ++i) {
+-            var candidate = FileInfo.joinPaths(dirs[i], "qmake" + suffix);
+-            var canonicalCandidate = FileInfo.canonicalPath(candidate);
+-            if (!canonicalCandidate || !File.exists(canonicalCandidate))
+-                continue;
+-            if (FileInfo.completeBaseName(canonicalCandidate) !== "qtchooser")
+-                candidate = canonicalCandidate;
+-            if (!filePaths.contains(candidate)) {
+-                console.info("Found Qt at '" + toNative(candidate) + "'.");
+-                filePaths.push(candidate);
++        var qtvers = ["-qt6", "-qt5", ""];
++        for (var j = 0; j < qtvers.length; ++j) {
++            for (var i = 0; i < dirs.length; ++i) {
++                var candidate = FileInfo.joinPaths(dirs[i], "qmake" + qtvers[j] + suffix);
++                var canonicalCandidate = FileInfo.canonicalPath(candidate);
++                if (!canonicalCandidate || !File.exists(canonicalCandidate))
++                    continue;
++                if (FileInfo.completeBaseName(canonicalCandidate) !== "qtchooser")
++                    candidate = canonicalCandidate;
++                if (!filePaths.contains(candidate)) {
++                    console.info("Found Qt at '" + toNative(candidate) + "'.");
++                    filePaths.push(candidate);
++                }
+             }
+         }
+     }
