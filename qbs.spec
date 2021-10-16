@@ -108,8 +108,8 @@ HTML documentation for %{name}.
 %autosetup -n %{name}-src-%{version} -p1
 
 %build
-#export CC=gcc
-#export CXX=g++
+export CC=gcc
+export CXX=g++
 #qmake_qt5 \
 #  QBS_INSTALL_PREFIX=%{_prefix} \
 #  QBS_LIBRARY_DIRNAME=%{_lib} \
