@@ -9,6 +9,12 @@ Group:          Development/KDE and Qt
 License:        LGPLv2 with exceptions and LGPLv3 with exceptions
 URL:            https://wiki.qt.io/qbs
 Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.gz
+
+# Attempt to filter qbs debug output from stderr
+Patch1:         qbs_tst_blackbox_stderr.patch
+# Fix qmake detection
+Patch2:         qbs_qmake.patch
+
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
