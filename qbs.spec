@@ -16,6 +16,7 @@ Patch1:         qbs_tst_blackbox_stderr.patch
 Patch2:         qbs_qmake.patch
 
 BuildRequires:  cmake
+BuildRequires:  qt5-assistant
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
