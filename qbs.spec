@@ -1,7 +1,7 @@
 %define build_docs	0
 
 Name:           qbs
-Version:        1.20.1
+Version:        1.23.2
 Release:        1
 Summary:        Qt5 Build System
 Group:          Development/KDE and Qt
