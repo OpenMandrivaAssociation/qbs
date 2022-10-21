@@ -11,6 +11,7 @@ URL:            https://wiki.qt.io/qbs
 Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.gz
 
 BuildRequires:  cmake
+BuildRequires:  qt5-assistant
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
