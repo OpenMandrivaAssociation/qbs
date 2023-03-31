@@ -2,7 +2,7 @@
 
 Name:           qbs
 Version:        1.20.1
-Release:        1
+Release:        2
 Summary:        Qt5 Build System
 Group:          Development/KDE and Qt
 # See LGPL_EXCEPTION.txt
