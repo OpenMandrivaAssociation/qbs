@@ -1,23 +1,24 @@
 %define build_docs	0
 
 Name:           qbs
-Version:        1.20.1
-Release:        2
-Summary:        Qt5 Build System
+Version:        2.3.0
+Release:        1
+Summary:        Build automation tool
 Group:          Development/KDE and Qt
 # See LGPL_EXCEPTION.txt
 License:        LGPLv2 with exceptions and LGPLv3 with exceptions
 URL:            https://wiki.qt.io/qbs
 Source0:        https://download.qt.io/official_releases/%{name}/%{version}/%{name}-src-%{version}.tar.gz
-BuildRequires:  pkgconfig(Qt5Concurrent)
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Help)
-BuildRequires:  pkgconfig(Qt5Network)
-BuildRequires:  pkgconfig(Qt5Script)
-BuildRequires:  pkgconfig(Qt5Test)
-BuildRequires:  pkgconfig(Qt5Widgets)
-BuildRequires:  pkgconfig(Qt5Xml)
+BuildRequires:	cmake
+BuildRequires:	ninja
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Help)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
 Obsoletes:  qbs > 4.2.2
 Obsoletes:  %{mklibname qbsqtprofilesetup 1} < 1.13.0
 
@@ -35,11 +36,11 @@ of executing the commands in the low-level build graph (like make).
 %{_datadir}/qbs/
 %{_libdir}/qbs/
 %{_libexecdir}/qbs/
-%{_mandir}/man1/qbs.1.*
+#{_mandir}/man1/qbs.1.*
 
 #--------------------------------------------------------------------
 
-%define qbscore_major 1
+%define qbscore_major 2
 %define libqbscore %mklibname qbscore %{qbscore_major}
 
 %package -n     %{libqbscore}
@@ -69,7 +70,6 @@ Devel files needed to build apps based on %{name}.
 %files -n %{libqbs_d}
 %{_includedir}/%{name}/
 %{_libdir}/*.so
-%{_libdir}/*.prl
 
 #------------------------------------------------------------------------------
 
@@ -99,29 +99,19 @@ HTML documentation for %{name}.
 %prep
 %autosetup -n %{name}-src-%{version} -p1
 
-%build
-%qmake_qt5 \
-  QBS_INSTALL_PREFIX=%{_prefix} \
-  QBS_LIBRARY_DIRNAME=%{_lib} \
-  QBS_LIBEXEC_INSTALL_DIR=%{_libexecdir}/%{name} \
-  QBS_RELATIVE_LIBEXEC_PATH=../libexec/%{name} \
-  CONFIG+=qbs_enable_project_file_updates \
-  CONFIG+=qbs_disable_rpath \
-  CONFIG+=qbs_enable_unit_tests \
-  CONFIG+=nostrip \
-  QMAKE_LFLAGS="-Wl,--as-needed" \
-  qbs.pro
-# LD_LIBRARY_PATH: Because the qbs executable built is itself invoked, and it requires the built qbs libraries
-LD_LIBRARY_PATH=%{_lib} %make_build
+# We want Qt6, not Qt5
+sed -i -e 's, Qt5,,g' CMakeLists.txt
 
-%if %{build_docs}
-%make_build docs
-%make_build html_docs
-%endif
+%conf
+%cmake \
+	-DQT_VERSION_MAJOR=6 \
+	-DQBS_LIB_INSTALL_DIR=%{_lib} \
+	-DQBS_PLUGINS_INSTALL_BASE=%{_lib} \
+	-G Ninja
+
+%build
+# LD_LIBRARY_PATH: Because the qbs executable built is itself invoked, and it requires the built qbs libraries
+LD_LIBRARY_PATH=$(pwd)/build/%{_lib}:${LD_LIBRARY_PATH} %ninja_build -C build
 
 %install
-%make_install INSTALL_ROOT=%{buildroot}
-
-%if %{build_docs}
-%make_install install_docs INSTALL_ROOT=%{buildroot}
-%endif
+%ninja_install -C build
