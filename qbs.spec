@@ -1,7 +1,7 @@
 %define build_docs	0
 
 Name:           qbs
-Version:        2.4.2
+Version:        2.5.0
 Release:        1
 Summary:        Build automation tool
 Group:          Development/KDE and Qt
