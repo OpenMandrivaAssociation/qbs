@@ -1,7 +1,7 @@
 %define build_docs	0
 
 Name:           qbs
-Version:        2.5.0
+Version:        3.3.1
 Release:        1
 Summary:        Build automation tool
 Group:          Development/KDE and Qt
@@ -98,7 +98,7 @@ HTML documentation for %{name}.
 #------------------------------------------------------------------------------
 
 %prep
-%autosetup -n %{name}-src-%{version} -p1
+%autosetup -n qbs-src-3.3.1 -p1
 
 # We want Qt6, not Qt5
 sed -i -e 's, Qt5,,g' CMakeLists.txt
